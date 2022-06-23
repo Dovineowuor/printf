@@ -1,66 +1,95 @@
-# _printf
-```_printf``` is a custom implementation of the C programming function ```printf```. This project is an application of the C programming knowledge that [Holberton School](https://www.holbertonschool.com/) cohort 3 students have learned since starting the program on May 1, 2017.
+[![N|Solid](https://trinityventures.com/uploads/images/portfolio/_270xAUTO_crop_center-center/Holberton-3.png )](http://holbertonschool.com)
+# PRINTF PROJECT
 
-**Prototype:** ```int _printf(const char *, ...);```
+Printf is not only the most used function in C, but it is a sample of how powerful could be C. By this project we _printf replicates the C standard library printf() function, according to the formats called with %. It prints also characters and strings.
+
+### Formats and its usages
+
+Use the format % according to the function you want to call with _printf
+
+| Format | Usage |
+| ------ | ------ |
+| %c | It is to print characters |
+| %s | It is to print strings |
+| %d | It is to print Signed Integer |
+| %i | It is to print integers |
+
+
+---
+
+## To clone the _printf:
+```sh
+$ git clone https://github.com/dovineowuor/printf.git
+```
+## Compilation
+
+Your code will be compiled this way:
+```sh
+$ gcc -Wall -Werror -Wextra -pedantic *.c
+```
+## Prototype
+```int _printf(const char *format, ...);```
+
+## Usage
+* Prints a string to the standard output, according to a given format
+* All files were created and compiled on Ubuntu 14.04.4 LTS using GCC 4.8.4 with the command ```gcc -Wall -Werror -Wextra -pedantic *.c```
+* All files were linted for syntax and style with [Betty](https://github.com/holbertonschool/Betty)
+* Returns the number of characters in the output string on success, -1 otherwise
+* Call it this way: ```_printf("format string", arguments...)``` where ```format string``` can contain conversion specifiers and flags,
+along with regular characters
 
 ## Examples
-**String**
-* Input: ```_printf("%s\n", 'This is a string.');```
-* Output: ```This is a string.```
 
-**Character**
-* Input: ```_printf("The first letter in the alphabet is %c\n", 'A');```
-* Output: ```The first letter in the alphabet is A```
+CREATE A MAIN.C WITH THIS CODE:
 
-**Integer**
-* Input: ```_printf("There are %i dozens in a gross\n", 12);```
-* Output: ```There are 12 dozens in a gross```
+```sh
+#include <limits.h>
+#include <stdio.h>
+#include "main.h"
 
-**Decimal:**
-* Input: ```_printf("%d\n", 1000);```
-* Output:  ```1000```
-## Project Requirements
-* All files will be compiled on Ubuntu 14.04 LTS
-* Programs and functions will be compiled with gcc 4.8.4 using flags -Wall -Werror -Wextra and -pedantic
-* Code must follow the [Betty](https://github.com/holbertonschool/Betty/wiki) style
-* Global variables are not allowed
-* Authorized functions and macros:
-  * ```write``` (man 2 write)
-  * ```malloc``` (man 3 malloc)
-  * ```free``` (man 3 free)
-  * ```va_start``` (man 3 va_start)
-  * ```va_end``` (man 3 va_end)
-  * ```va_copy``` (man 3 va_copy)
-  * ```va_arg``` (man 3 va_arg)
-## Mandatory Tasks
-- [x] Write function that produces output with conversion specifiers ```c```, ```s```, and ```%```.
-- [x] Handle conversion specifiers ```d```, ```i```.
-- [x] Create a man page for your function.
-## Advanced Tasks
-- [x] Handle conversion specifier ```b```.
-- [x] Handle conversion specifiers ```u```, ```o```, ```x```, ```X```.
-- [ ] Use a local buffer of 1024 chars in order to call write as little as possible.
-- [x] Handle conversion specifier ```S```.
-- [x] Handle conversion specifier ```p```.
-- [ ] Handle flag characters ```+```, space, and ```#``` for non-custom conversion specifiers.
-- [ ] Handle length modifiers ```l``` and ```h``` for non-custom conversion specifiers.
-- [ ] Handle the field width for non-custom conversion specifiers.
-- [ ] Handle the precision for non-custom conversion specifiers.
-- [ ] Handle the ```0``` flag character for non-custom conversion specifiers.
-- [x] Handle the custom conversion specifier ```r``` that prints the reversed string.
-- [x] Handle the custom conversion specifier ```R``` that prints the rot13'ed string.
-- [ ] All above options should work well together.
-## File Descriptions
-* **_printf.c:** - contains the  fucntion ```_printf```, which uses the prototype ```int _printf(const char *format, ...);```. The format string is composed of zero or more directives. See ```man 3 printf``` for more detail. **_printf** will return the number of characters printed (excluding the null byte used to end output to strings) and will write output to **stdout**, the standard output stream.
-* **_putchar.c:** - contains the function ```_putchar```, which writes a character to stdout.
-* **main.h:** - contains all function prototypes used for ```_printf```.
-* **man_3_printf:** - manual page for the custom ```_printf``` function.
-* **print_chars.c:** - contains the functions ```print_c```, ```print_s```, ```print_S```, and ```print_r``` which handle the conversion specifiers ```c```, ```s```, ```S```, and ```r```, respectively, as well as ```hex_print```, which prints a char's ascii value in uppercase hex
-* **print_numbers.c:** - contains the functions ```print_i``` and ```print_d```, which handle the conversion specifiers ```i``` and ```d```, respectively
-* **print_hex.c:** - contains the functions ```print_hex```, which prints an unsigned int in hexidecimal form, ```print_x```, ```print_X```, and ```print_p```, which handle the conversion specifiers ```x```, ```X```, and ```p```, respectively
-* **print_unsigned_int.c:** - contains the functions ```print_u```, ```print_o```, and ```print_b```, which handle the conversion specifiers ```u```, ```o```, and ```b```, respectively
-* **print_rot13.c** - contains the function ```print_R```, which handles the conversion specifier ```R```
-## Authors
-[Dovine Owuor](https://github.com/dovineowuor) | [@Dovine_owuor](https://twitter.com/dovineowuor)
+/**
+ * main - Entry point
+ *
+ * Return: Always 0
+ */
+int main(void)
+{
+    int len;
+    int len2;
+    unsigned int ui;
+    void *addr;
 
-[Evans Rosana](https://github.com/Evansmutembi) | [@Evans_Rosana](https://twitter.com/)
+    len = _printf("Let's try to printf a simple sentence.\n");
+    len2 = printf("Let's try to printf a simple sentence.\n");
+    ui = (unsigned int)INT_MAX + 1024;
+    addr = (void *)0x7ffe637541f0;
+    _printf("Length:[%d, %i]\n", len, len);
+    printf("Length:[%d, %i]\n", len2, len2);
+    _printf("Negative:[%d]\n", -762534);
+    printf("Negative:[%d]\n", -762534);
+    _printf("Character:[%c]\n", 'H');
+    printf("Character:[%c]\n", 'H');
+    _printf("String:[%s]\n", "I am a string !");
+    printf("String:[%s]\n", "I am a string !");
+    len = _printf("Percent:[%%]\n");
+    len2 = printf("Percent:[%%]\n");
+    _printf("Len:[%d]\n", len);
+    printf("Len:[%d]\n", len2);
+    _printf("Unknown:[%r]\n");
+    printf("Unknown:[%r]\n");
+    return (0);
+}
+```
+
+Also you can test like this way in a C program.
+
+* ```_printf("Hello, Holberton\n")``` *prints "Hello, Holberton", followed by a new line*
+* ```_printf("%s", "Hello")``` *prints "Hello"*
+* ```_printf("This is a number: %d", 98)``` *prints "This is a number: 98"*
+
+
+### Authors
+
+ - [Dovine Owuor](https://github.com/dovineowuor)
+ - [Evans Moseti](https://github.com/mutembeievans)
+
